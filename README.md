@@ -8,7 +8,9 @@ which is only available here.
 
 ---
 
-Once the video is available I will add a link and hopefully all the great questions and comments from the audience as an additional slide at the end.
+A recording is available [here](https://www.youtube.com/watch?v=x4tnJCtpzow). I
+will add a slide with the questions and insights from attendees as soon as
+possible.
 
 ---
 
