@@ -21,3 +21,6 @@ source Markdown are available**. Sadly the animated gifs are just static images
 in the PDF.
 
 ---
+
+You can find a conversion from Deckset to Reveal.js using [Haskset](https://github.com/rberenguel/haskset) (this was the guinea pig)
+[here](https://rberenguel.github.io/commoditisation-languages/commoditisation.html#/)

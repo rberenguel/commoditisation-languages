@@ -100,7 +100,7 @@ predict the properties of missing elements, such as gallium and germanium
 
 ---
 
-# ?[^1]
+# ? [^1]
 
 [^1]: And it's not the force
 

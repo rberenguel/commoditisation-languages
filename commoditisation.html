@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>...</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/reset.css">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/theme/black.css" id="theme">
+  <style>
+
+  @font-face {
+      font-family: OstrichSans;
+      src: url("resources/OstrichSans-Medium.otf") format("opentype");
+  }
+  @font-face {
+      font-family: OstrichSans;
+      font-weight: bold;
+      src: url("resources/OstrichSans-Heavy.otf") format("opentype");
+  }
+  section.has-light-background, section.has-light-background h1, section.has-light-background h2, section.has-light-background h3, section.has-light-background h4, section.has-light-background h5, section.has-light-background h6 {
+      color:  rgb(13, 42, 53);}
+
+  .reveal {
+      font-family: "OstrichSans", Helvetica, sans-serif;
+      font-size: 4em;
+      font-weight: 700;
+      background: rgb(13, 42, 53);
+  }
+
+  .reveal * {
+      font-family: "OstrichSans", Helvetica, sans-serif;
+      
+  }
+
+  .reveal strong {
+      color: rgb(223,142,200);
+  }
+
+  .reveal em {
+      font-weight: 100;
+      font-style: normal;
+  }
+
+
+  .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5 {
+      text-transform: uppercase;
+      font-family: "OstrichSans", Helvetica, sans-serif;
+  }
+
+  .reveal ul {
+      width: 100%;
+      text-align:center;
+      padding:0;
+      margin:0;
+  }
+
+  .reveal ul li {
+      transform: scaleX(0.7);
+          list-style:none;
+          margin-bottom:6px;
+          text-transform: uppercase;
+  }
+
+  ul > li:before {
+      color: rgb(223,142,200);
+      content: '> ';
+  }
+
+  .reveal .slide {
+      height: 100% !important;
+      top: auto;
+      margin-top: auto !important;
+      display: table;
+  }
+
+  .reveal .slide>section {
+      min-height: 90% !important;
+      top: auto;
+  }
+
+  .reveal .slide>section>section {
+      min-height: 100% !important;
+  }
+
+  .left-float {
+      display: table;
+      width: 50%;
+      float: left;
+      height: 700px;
+  }
+
+  .overlay {
+      background-blend-mode: darken;
+      background-color: rgba(40, 40, 40, 0.6);
+  }
+
+  .background-multi-image {
+      height: 700px;
+      display: inline-block;
+      background-position: calc(50%);
+      background-repeat: no-repeat;
+      background-size: cover;
+      filter: blur(1px);
+      -webkit-filter: blur(1px);
+  }
+
+  .two-image {
+      width: 49%;
+  }
+
+  .three-image {
+      width: 30%;
+  }
+
+  .four-image {
+      width: 24%;
+  }
+
+  .five-image {
+      width: 19%;
+  }
+
+
+  .fit-image {
+      width: 100%;
+      height: 700px;
+      display: inline-block;
+      background-position: calc(50%);
+      background-repeat: no-repeat;
+      background-size: contain;
+  }
+
+  .left {
+      float: left;
+  }
+
+  .right {
+      float: right;
+      clear: both;
+  }
+
+  .centered-float {
+      text-align: center;
+      z-index: 20;
+      position: absolute !important;
+      top: calc(5%) !important;
+      left: 0 !important;
+      right: 0 !important;
+      margin: 0 0;
+  }
+
+  .half-image-cover {
+      width: 50%;
+      height: 700px;
+      display: inline-block;
+      background-position: calc(50%);
+      background-repeat: no-repeat;
+      background-size: cover;
+  }
+
+  sup.superscript {
+      font-size: 50% !important;
+      color: #42affa;
+      margin-left: -1rem;
+  }
+
+  .footnote {
+      font-size: 30% !important;
+      margin-top: calc(90%);
+      display: inline-block;
+  }
+
+  .footnote-count {
+      font-size: 40% !important;
+      color: #42affa;
+      margin-top: calc(90%);
+      display: inline-block;
+  }
+
+  .half-image-fit {
+      width: 50%;
+      height: 700px;
+      display: inline-block;
+      background-position: calc(50%);
+      background-repeat: no-repeat;
+      background-size: contain;
+  }
+
+  .container{
+      display: flex;
+      height: 100%;
+      align-items: center;
+      justify-items: center;
+      flex-direction: row;
+  }
+
+  .col{
+      display: block;
+      flex-grow: 1;  
+      align-items: center;
+      justify-items: center;
+  }
+
+  .row {
+      display: flex !important;
+      align-items: center;
+      justify-items: center;
+      flex-grow: 1;
+      flex-direction: column;  
+  }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section class="slide level1">
+
+<div class="container">
+<div class="row">
+<section id="commoditisation-and-programming-languages" class="col">
+<h3><strong>Commoditisation</strong> and <em>programming languages</em></h3>
+<h5 id="ruben-berenguel-lead-data-engineer">Ruben Berenguel, <em>Lead Data Engineer</em></h5>
+</section>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<div class="container">
+<div class="row">
+<div class="col">
+<aside class="notes">
+<p>Test footnote, hello!</p>
+</aside>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<div class="background-multi-image three-image overlay" style="background-image: url(images/RubenBerenguel.jpg);">
+
+</div>
+<div class="background-multi-image three-image overlay" style="background-image: url(images/scala.png);">
+
+</div>
+<div class="background-multi-image three-image overlay" style="background-image: url(images/python.png);">
+
+</div>
+<section id="whoami" class="centered-float">
+<h2>whoami</h2>
+<ul>
+<li>Ruben Berenguel (<span class="citation" data-cites="berenguel">@berenguel</span>)</li>
+<li>PhD in Mathematics</li>
+<li>Lead data engineer using <strong>Scala</strong>, <strong>Python</strong> and <strong>Go</strong></li>
+<li>Right now at <strong>Hybrid Theory</strong></li>
+</ul>
+</section>
+</section>
+<section class="slide level1">
+
+<div class="container">
+<div class="row">
+<section id="commoditisation-and-programming-languages-1" class="col">
+<h3><strong>Commoditisation</strong> and <em>programming languages</em></h3>
+<aside class="notes">
+<p>You may be wondering what my approach to strategy can be, as a tech focused person. Last year, I had a mapping talk where I focused on technology landscape. It was a mapping talk with a twist: the map was not a Wardley map in the sense of having the usual x or y axes. Today I want to explore this a bit more together with you, by focusing on a recent question of mine. First, let me get us in the mood for mapping</p>
+</aside>
+</section>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<div class="background-multi-image two-image overlay" style="background-image: url(images/escalier.jpg);">
+
+</div>
+<div class="background-multi-image two-image overlay" style="background-image: url(images/girl_mandolin.jpg);">
+
+</div>
+<div class="centered-float">
+<aside class="notes">
+<p><a href="https://en.wikipedia.org/wiki/File:Duchamp_-_Nude_Descending_a_Staircase.jpg">Marcel Duchamp’s _Nude descending a staircase n.2</a> and Pablo Picasso’s <a href="https://en.wikipedia.org/wiki/List_of_Picasso_artworks_1901–1910">Girl with a mandolin</a>: <a href="https://en.wikipedia.org/wiki/Cubism#Interpretation">Cubism</a> changed how painting and observers saw reality, by showing different perspectives in one image, or depicting time and space in different ways</p>
+</aside>
+</div>
+</section>
+<section class="slide level1">
+
+<div class="fit-image unknown directives (position): [Empty]" style="background-image: url(images/ishikawa.jpg);">
+
+</div>
+<div class="container">
+<div class="row">
+<div class="col">
+<aside class="notes">
+<p><a href="https://commons.wikimedia.org/wiki/File:Fishbone_BadCoffeeExample.jpg">Reasons for bad coffee</a>. <a href="https://en.wikipedia.org/wiki/Ishikawa_diagram">Ishikawa</a> diagrams allowed people to analyse defects and reactions with ease</p>
+</aside>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<div class="fit-image unknown directives (position): [Empty]" style="background-image: url(images/higgs.png);">
+
+</div>
+<div class="container">
+<div class="row">
+<div class="col">
+<aside class="notes">
+<p><a href="https://commons.wikimedia.org/wiki/File:BosonFusion-Higgs.svg">A Higgs boson maybe appears</a> Feynman diagrams revolutionised theoretical particle physics</p>
+</aside>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<div class="fit-image fit" style="background-image: url(images/mendeleyev_1871.png);">
+
+</div>
+<div class="container">
+<div class="row">
+<div class="col">
+<aside class="notes">
+<p><a href="https://commons.wikimedia.org/wiki/File:Periodic_table_by_Mendeleev,_1871.svg">Mendeleev’s original</a>. <a href="https://en.wikipedia.org/wiki/Periodic_table#Mendeleev&#39;s_table">The periodic table</a> organised information in a way that highlighted what was unknown</p>
+</aside>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<blockquote>
+<p>But there are also unknown unknowns — <em>the ones we don’t know we don’t know.</em> – Donald Rumsfeld</p>
+</blockquote>
+</section>
+<section class="slide level1">
+
+<div class="container">
+<div class="row">
+<section id="wardley-mapping" class="col">
+<h2>Wardley mapping</h2>
+</section>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<div class="container">
+<div class="row">
+<section id="what-happened-between" class="col">
+<h3>What <strong>happened</strong> between…</h3>
+</section>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<div class="fit-image unknown directives (position): [Empty]" style="background-image: url(images/alderaan.gif);">
+
+</div>
+<div class="container">
+<div class="row">
+<div class="col">
+<aside class="notes">
+<p>Alderaan didn’t shoot first</p>
+</aside>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<div class="container">
+<div class="row">
+<section id="and-this" class="col">
+<h3>and <strong>this</strong></h3>
+</section>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<div class="fit-image unknown directives (position): [Empty]" style="background-image: url(images/destroyed.gif);">
+
+</div>
+<div class="container">
+<div class="row">
+<div class="col">
+
+</div>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<div class="container">
+<div class="row">
+<section id="section" class="col">
+<h2>? <sup class='superscript'>1</sup></h2>
+<div class="footnote-count">
+1 →
+</div>
+<div class="footnote">
+<p>And it’s not the force</p>
+</div>
+</section>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<div class="container">
+<div class="row">
+<section id="its-actually-this" class="col">
+<h3>It’s actually this</h3>
+</section>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<div class="fit-image unknown directives (position): [Empty]" style="background-image: url(images/assault.gif);">
+
+</div>
+<div class="container">
+<div class="row">
+<div class="col">
+
+</div>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<div class="container">
+<div class="row">
+<div class="col">
+<h3 id="having-a-map">Having a <strong>map</strong></h3>
+<h2 id="section-1">&amp;</h2>
+<h3 id="having-a-plan">Having a <strong>plan</strong></h3>
+<aside class="notes">
+<p>Now we are ready to get into the meat of the issue</p>
+</aside>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<div class="container">
+<div class="row">
+<section id="now-that-we-are-in-a-mapping-mood-what-is-the-problem-space-we-want-to-analyse" class="col">
+<h3>Now that we are in a <strong>mapping mood</strong>, <em>what is the problem space</em> we want to analyse?</h3>
+</section>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<div class="fit-image unknown directives (position): [Empty]" style="background-image: url(images/droids.gif);">
+
+</div>
+<div class="container">
+<div class="row">
+<div class="col">
+<aside class="notes">
+<p>These are not the Wardley Maps you are thinking of. I think of Wardley Mapping as an overarching tool to explore problem spaces. Join me to explore this one</p>
+</aside>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<div class="container">
+<div class="row">
+<div class="col">
+<h3 id="what-are-the">What are the</h3>
+<h4 id="landscape-and-climatic-patterns"><strong>landscape</strong> and <strong>climatic patterns</strong></h4>
+<h3 id="of">of</h3>
+<h4 id="programming-languages"><em>programming languages</em>?</h4>
+<aside class="notes">
+<p>My first question wasn’t this one. I was pondering what the future relationship between Rust and Python may be, given Dropbox’s rewrite of its core sync engine in Rust (from Python 2), and other rewrites and projects moving from Python to Rust (at least for the hot paths)</p>
+</aside>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<div class="container">
+<div class="row">
+<section id="this-question-is-too-large" class="col">
+<h2>This question is <strong>too large</strong></h2>
+</section>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<div class="container">
+<div class="row">
+<section id="focus-on-figuring-the-axes-first" class="col">
+<h2>Focus on <strong>figuring the axes</strong> first</h2>
+<aside class="notes">
+<p>This is in a sense a form of situational awareness. We have no bearings and we need to do with what we have</p>
+</aside>
+</section>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<div class="container">
+<div class="row">
+<section id="what-are-the-two-extreme-evolutionary-stages-of-a-programming-language" class="col">
+<h4>What are the two <em>extreme</em> evolutionary stages of a <strong>programming language</strong>?</h4>
+</section>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<h5 id="what-are-the-two-extreme-evolutionary-stages-of-a-programming-language-1">What are the two <em>extreme</em> evolutionary stages of a <strong>programming language</strong>?</h5>
+<div>
+<ol type="1">
+<li class="fragment"><strong>Just created</strong>. A <strong>toy</strong>. An <strong>experiment</strong>. An <strong>idea</strong>.</li>
+<li class="fragment"><em>Used all over the stack</em>. <em>Not shiny</em> in a resumé.</li>
+</ol>
+</div>
+<aside class="notes">
+<p>We can imagine languages at stage 1 as when they started. Python started as the evolution of a teaching language. Haskell started as an investigation in lazy functional languages. Now, Python is used everywhere and <strong>not shiny</strong>. But, Haskell is <em>still</em> shiny</p>
+</aside>
+</section>
+<section class="slide level1">
+
+<div class="fit-image fit" style="background-image: url(images/Genesis1.png);">
+
+</div>
+<div class="container">
+<div class="row">
+<div class="col">
+<aside class="notes">
+<p>This is a possible view of how a language evolves from a “beginning” to an “end”. These two languages started as an investigation of some concepts. Python, as the evolution of a simple language to make teaching easy. Haskell to explore some type-level ideas like laziness. Arguably, we could say the vertical axis represents “visibility to the user”. At this <em>genesis</em> stage teaching language would thus be more “visible” than one used in a specific corner of programming language research.</p>
+</aside>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<div class="fit-image fit" style="background-image: url(images/Genesis2.png);">
+
+</div>
+<div class="container">
+<div class="row">
+<div class="col">
+
+</div>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<div class="fit-image fit" style="background-image: url(images/Genesis3.png);">
+
+</div>
+<div class="container">
+<div class="row">
+<div class="col">
+<aside class="notes">
+<p>Jump to the present, and Python is probably one of the most “visible” programming languages, possibly only rivaled by Java. It is no longer in a teaching niche</p>
+</aside>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<div class="fit-image fit" style="background-image: url(images/Genesis4.png);">
+
+</div>
+<div class="container">
+<div class="row">
+<div class="col">
+<aside class="notes">
+<p>It has expanded across most of the problem space, increasing visibility</p>
+</aside>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<div class="fit-image fit" style="background-image: url(images/Genesis5.png);">
+
+</div>
+<div class="container">
+<div class="row">
+<div class="col">
+<aside class="notes">
+<p>But… Arguably, Haskell has expanded likewise. If we think of the vertical axis as how much of the problem space (ML, data, backend, frontend, etc) a language “takes”, we can see a climatic pattern emerging: a language will expand until it covers all available space. What, then, distinguishes a “really” commoditised language vs another, not so commoditized?</p>
+</aside>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<div class="container">
+<div class="row">
+<div class="col">
+<h3 id="in-a-normal-wardley-map-we-would-call-these-two-stages">In a normal Wardley map we would call these two stages</h3>
+<ol type="1">
+<li><strong>Genesis</strong></li>
+<li><strong>Commodity</strong> (or utility)</li>
+</ol>
+<h3 id="are-they">Are they?</h3>
+<aside class="notes">
+<p>We could argue for <em>Genesis</em>, although I prefer <em>Research Phase</em> in this scenario. But what about commodity? To call something a commodity, we need to identify the user and see if there is really a fully interchangeable source.</p>
+</aside>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<div class="container">
+<div class="row">
+<section id="who-is-the-user" class="col">
+<h3>Who is the <strong>user</strong>?</h3>
+</section>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<div class="container">
+<div class="row">
+<section id="option-a-the-company-choosing-the-language-to-use" class="col">
+<h4><em>Option A:</em> The <strong>company</strong> choosing the language to use</h4>
+</section>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<div class="container">
+<div class="row">
+<section id="option-b-the-developer-choosing-the-language-to-learn" class="col">
+<h4><em>Option B:</em> The <strong>developer</strong> choosing the language to learn</h4>
+</section>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<div class="container">
+<div class="row">
+<div class="col">
+<h4 id="option-a-the-company-choosing-the-language-to-use-1"><em>Option A:</em> The <strong>company</strong> choosing the language to use</h4>
+<h4 id="option-b-the-developer-choosing-the-language-to-learn-1"><em>Option B:</em> The <strong>developer</strong> choosing the language to learn</h4>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<h2 id="option-a-company"><em>Option A</em>: <strong>Company</strong></h2>
+<p><strong>Commodity</strong> could mean:</p>
+<div>
+<ul>
+<li class="fragment">Access to a <strong>large pool of talent</strong> (<em>large market</em>)</li>
+<li class="fragment">Access to a <strong>varied pool of talent</strong> (<em>range of skills</em>)</li>
+</ul>
+</div>
+<aside class="notes">
+<p>You could argue that the commodity in this case is the combination <code>developer+language</code></p>
+</aside>
+</section>
+<section class="slide level1">
+
+<h2 id="option-b-developer"><em>Option B</em>: <strong>Developer</strong></h2>
+<p><strong>Commodity</strong> could mean:</p>
+<div>
+<ul>
+<li class="fragment">Usability across a <strong>range of problems</strong> (<em>generality</em>)</li>
+<li class="fragment">Large individual <strong>demand</strong> (<em>ability to choose</em>)</li>
+</ul>
+</div>
+<aside class="notes">
+<p>You could argue that the commodity in this case is the combination <code>job+language</code></p>
+</aside>
+</section>
+<section class="slide level1">
+
+<div class="container">
+<div class="row">
+<div class="col">
+<h2 id="feedback-loop"><strong>Feedback loop</strong></h2>
+<h3 id="or">or</h3>
+<h2 id="deadlock"><strong>deadlock</strong>?</h2>
+<aside class="notes">
+<p>A large pool of talent makes it more likely for a language to be picked by companies, and the more companies picking a language makes it easier for a language to be picked by individual developers. Let’s see how this evolves by looking at a specific case</p>
+</aside>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<div class="fit-image fit" style="background-image: url(images/loop1.png);">
+
+</div>
+<div class="container">
+<div class="row">
+<div class="col">
+<aside class="notes">
+<p>Let’s have a look at Python, which was starting as a teaching language due to its simplicity</p>
+</aside>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<div class="fit-image fit" style="background-image: url(images/loop2.png);">
+
+</div>
+<div class="container">
+<div class="row">
+<div class="col">
+<aside class="notes">
+<p>As students pick it up, they start using it for small problems (small tools, simple automation), usage increases</p>
+</aside>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<div class="fit-image fit" style="background-image: url(images/loop3.png);">
+
+</div>
+<div class="container">
+<div class="row">
+<div class="col">
+<aside class="notes">
+<p>Eventually some students pick it up to simplify working with numerical analysis code. Usage increases again</p>
+</aside>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<div class="fit-image fit" style="background-image: url(images/loop4.png);">
+
+</div>
+<div class="container">
+<div class="row">
+<div class="col">
+<aside class="notes">
+<p>More usage and more areas useful for teaching, means it’s more used for teaching</p>
+</aside>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<div class="fit-image fit" style="background-image: url(images/loop5.png);">
+
+</div>
+<div class="container">
+<div class="row">
+<div class="col">
+<aside class="notes">
+<p>Which means more students, more small problems solved, more usage. Eventually it starts being used for backend work, which again compounds on usage which increases the rest. A nice self-reinforcing feedback loop. Note that Java (with the additional push of by-committee creation) was also heavily used as a teaching language.</p>
+</aside>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<div class="container">
+<div class="row">
+<section id="as-easy-as-that-teaching" class="col">
+<h3>As easy as that? <em>Teaching</em>?</h3>
+<aside class="notes">
+<p>This can’t be the answer, though. Case in point, Lisp was used as a teaching language between the 70s and the 90s. And it didn’t catch up, even if it was used mostly everywhere. Its failure can be chalked up to several reasons (lack of enough computing power, complex abstractions, bad connotations with the AI winter) but it still raises the question of what was the big difference. Likewise, Haskell is relatively used as a teaching language, and it clearly has not the same level of usage or exposure. Here, abstraction complexity may be to blame, and there is a possible answer in <em>simplicity</em>. How easy will be the next super mainstream language?</p>
+</aside>
+</section>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<h2 id="open-questions"><strong>Open questions</strong></h2>
+<ul>
+<li>What drives <strong>programming language adoption feedback loops</strong>, if it is not <em>teaching</em>?</li>
+<li>Are there any <strong>other climatic patterns</strong> to identify in the programming language landscape?</li>
+<li>How do programming languages <strong>decay</strong>?</li>
+</ul>
+</section>
+<section class="slide level1">
+
+<div class="container">
+<div class="row">
+<section id="some-resources-and-interesting-references" class="col">
+<h2><strong>Some Resources and interesting references</strong></h2>
+<ul>
+<li><a href="https://medium.com/wardleymaps">S. Wardley, <em>Wardley Mapping Online Book</em></a></li>
+<li><a href="http://cognitivemedium.com/tat/index.html">M. Nielsen, <em>Thought as a Technology</em></a></li>
+<li><a href="https://www.amazon.com/Thinking-Systems-Donella-H-Meadows-ebook/dp/B005VSRFEA">D. Meadows, <em>Thinking in Systems</em></a></li>
+<li><a href="https://www.amazon.com/Visual-Complexity-Mapping-Patterns-Information/dp/1616892196/ref=pd_bxgy_2/145-1497482-8013630?_encoding=UTF8&amp;pd_rd_i=1616892196&amp;pd_rd_r=cff59bd4-8911-11e9-b65a-65ead2c4e194&amp;pd_rd_w=wj9sw&amp;pd_rd_wg=IpwOu&amp;pf_rd_p=a2006322-0bc0-4db9-a08e-d168c18ce6f0&amp;pf_rd_r=765AF27RCBSGE4HNNZDE&amp;psc=1&amp;refRID=765AF27RCBSGE4HNNZDE">M. Lima, <em>Visual Complexity: Mapping Patterns of Information</em></a></li>
+<li><a href="https://www.jsoftware.com/papers/tot.htm">K. Iverson, <em>Notation as a Tool for Thought</em></a></li>
+</ul>
+</section>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<div class="container">
+<div class="row">
+<section id="questions" class="col">
+<h2>Questions?</h2>
+</section>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<div class="fit-image unknown directives (position): [Empty]" style="background-image: url(images/Gene.jpg);">
+
+</div>
+<div class="container">
+<div class="row">
+<section id="thanks" class="col">
+<h2><strong>Thanks!</strong></h2>
+</section>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<div class="container">
+<div class="row">
+<div class="col">
+<p>Get the slides from my github:</p>
+<p><code>github.com/rberenguel/</code></p>
+<p>The repository is</p>
+<p><code>commoditisation-languages</code></p>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<div class="container">
+<div class="row">
+<section id="further-references" class="col">
+<h2>Further references</h2>
+<ul>
+<li><a href="https://www.oreilly.com/library/view/oscon-2017-/9781491976227/video306776.html">S. Wardley, <em>Playing Chess With Companies</em> (OSCON 2017, on Safari Books Online)</a></li>
+<li><a href="https://skillsmatter.com/skillscasts/13456-keynote-simon-wardley">S. Wardley, <em>Crossing the River by Feeling the Stones</em></a></li>
+<li><a href="https://www.youtube.com/watch?v=deHM34b21v4&amp;app=desktop">G. Adzic, <em>Skip the first three months of development for your next app</em></a></li>
+</ul>
+</section>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<div class="container">
+<div class="row">
+<section id="eof" class="col">
+<h2>EOF</h2>
+</section>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+</section>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/reveal.js/dist/reveal.js"></script>
+
+  // reveal.js plugins
+  <script src="https://unpkg.com/reveal.js/plugin/notes/notes.js"></script>
+  <script src="https://unpkg.com/reveal.js/plugin/search/search.js"></script>
+  <script src="https://unpkg.com/reveal.js/plugin/zoom/zoom.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Push each slide change to the browser history
+        history: true,
+        // Transition style
+        transition: 'fade', // none/fade/slide/convex/concave/zoom
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: "100%",
+        height: "90%",
+
+        // reveal.js plugins
+        plugins: [
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>
